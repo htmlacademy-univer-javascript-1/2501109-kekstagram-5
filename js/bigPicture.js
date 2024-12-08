@@ -105,7 +105,6 @@ const openBigPicture = (picture) => {
 
   document.addEventListener('keydown', onBigPictureEscKeyDown);
 };
-
 pictureCloseButton.addEventListener('click', onCloseBigPictureClick);
 
 export {openBigPicture};
