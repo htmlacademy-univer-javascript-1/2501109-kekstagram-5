@@ -9,7 +9,6 @@ const checkPalindrome = function (string = '') {
   return result === string;
 };
 
-
 const findNumbers = function (string) {
   let result = '';
   if (!string.isNaN) {
