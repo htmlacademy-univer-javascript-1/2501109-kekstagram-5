@@ -1,1 +1,1 @@
-import './MakePhotos.js';
+import './pictures.js';
