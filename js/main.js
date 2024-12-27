@@ -1,4 +1,3 @@
-import { renderThumbnails } from './filters.js';
-import './form.js';
-
-renderThumbnails();
+import './pictures.js';
+import './hashtags.js';
+import './slider.js';
