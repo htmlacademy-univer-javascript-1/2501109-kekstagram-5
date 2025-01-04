@@ -1,13 +1,13 @@
-import { openBigPicture } from './bigPicture.js';
+import {createPhotoDescriptions} from './data.js';
+import {openBigPicture} from './bigPicture.js';
 
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
-const picturesFragment = document.createDocumentFragment();
+const createPictures = createPhotoDescriptions();
 
-
-const createPictureElement = (picture) => {
+const renderPhoto = (picture) => {
   const { url, description, likes, comments } = picture;
   const pictureElement = pictureTemplate.cloneNode(true);
 
@@ -16,29 +16,24 @@ const createPictureElement = (picture) => {
   pictureElement.querySelector('.picture__comments').textContent = comments.length;
   pictureElement.querySelector('.picture__likes').textContent = likes;
 
-  pictureElement.addEventListener('click', (evt) => {
+  const onPictureElementClick = (evt) => {
     evt.preventDefault();
+
     openBigPicture(picture);
-  });
+  };
+
+  pictureElement.addEventListener('click', onPictureElementClick);
 
   return pictureElement;
 };
 
-const renderPhotos = (photos) => {
-  photos.forEach((photo) => {
-    picturesFragment.appendChild(createPictureElement(photo));
+const fragment = document.createDocumentFragment();
+
+const renderPhotos = (objects) => {
+  objects.forEach((item) => {
+    fragment.appendChild(renderPhoto(item));
   });
-
-  pictures.appendChild(picturesFragment);
 };
 
-const removePictures = () => {
-  const images = document.querySelectorAll('.picture');
-  if (images) {
-    images.forEach((element) => {
-      element.remove();
-    });
-  }
-};
-
-export { renderPhotos, removePictures };
+renderPhotos(createPictures);
+pictures.appendChild(fragment);
